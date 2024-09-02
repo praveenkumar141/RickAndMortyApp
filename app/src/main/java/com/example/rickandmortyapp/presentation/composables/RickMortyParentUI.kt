@@ -1,6 +1,5 @@
-package com.example.rickandmortyapp.presentation
+package com.example.rickandmortyapp.presentation.composables
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -36,6 +35,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.rickandmortyapp.R
 import com.example.rickandmortyapp.data.CharacterListResponse
+import com.example.rickandmortyapp.presentation.model.RickMortyEvent
 import com.example.rickandmortyapp.util.APP_TITLE
 import com.example.rickandmortyapp.util.BG_IMAGE
 
@@ -136,24 +136,3 @@ fun BgImage() {
         contentDescription = null
     )
 }
-
-@Composable
-fun CharacterAvatar(image: String, size: Dp? = null) {
-    Image(
-        painter = rememberAsyncImagePainter(
-            ImageRequest.Builder(LocalContext.current)
-                .data(data = image)
-                .apply {
-                    error(drawableResId = R.drawable.rickmortyapp_default_avatar)
-                    placeholder(drawableResId = R.drawable.rickmortyapp_default_avatar)
-                    crossfade(true)
-                }
-                .build(),
-        ),
-        contentDescription = null,
-        contentScale = ContentScale.Crop,
-        modifier = size?.let { Modifier.size(it) }
-            ?: Modifier,
-    )
-}
-

@@ -1,4 +1,4 @@
-package com.example.rickandmortyapp.presentation
+package com.example.rickandmortyapp.presentation.model
 
 sealed interface RickMortyEvent {
     data class CharacterClicked(val id: Int): RickMortyEvent

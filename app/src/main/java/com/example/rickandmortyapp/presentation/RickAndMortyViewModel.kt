@@ -3,6 +3,7 @@ package com.example.rickandmortyapp.presentation
 import androidx.lifecycle.ViewModel
 import com.example.rickandmortyapp.data.CharacterListResponse
 import com.example.rickandmortyapp.domain.repository.RickMortyRepository
+import com.example.rickandmortyapp.presentation.model.RickMortyEvent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow

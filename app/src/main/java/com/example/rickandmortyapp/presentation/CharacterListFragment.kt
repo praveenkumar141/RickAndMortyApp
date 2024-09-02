@@ -11,6 +11,8 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.rickandmortyapp.R
+import com.example.rickandmortyapp.presentation.composables.RickMortyParentUI
+import com.example.rickandmortyapp.presentation.model.RickMortyEvent
 import com.example.rickandmortyapp.util.CHARACTER_ID
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
