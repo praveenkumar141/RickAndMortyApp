@@ -73,7 +73,7 @@ fun RickMortyParentUI(
                     state = listState
                 ) {
                     itemsIndexed(state.results) { index, item ->
-                        Row(Modifier.clickable { onRickMortyEvent(RickMortyEvent.CharacterClicked(id = item.id)) }) {
+                        Row(Modifier.fillMaxWidth().clickable { onRickMortyEvent(RickMortyEvent.CharacterClicked(id = item.id)) }) {
                             CharacterAvatar(item.image)
                             Spacer(modifier = Modifier.width(20.dp))
                             Column {

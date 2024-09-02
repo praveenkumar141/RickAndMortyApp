@@ -65,6 +65,7 @@ class CharacterListFragment : Fragment() {
         when (controlEvent) {
             is RickMortyEvent.CharacterClicked -> openDetailFragment(controlEvent.id)
             is RickMortyEvent.LoadNextPage -> viewModel.getList(page = controlEvent.page)
+            RickMortyEvent.NavigateBack -> TODO()
         }
     }
 
