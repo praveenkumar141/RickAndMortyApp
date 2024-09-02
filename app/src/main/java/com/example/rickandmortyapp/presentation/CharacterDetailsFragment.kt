@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import androidx.navigation.fragment.findNavController
 
 class CharacterDetailsFragment : Fragment() {
 
@@ -26,11 +25,6 @@ class CharacterDetailsFragment : Fragment() {
         characterId = arguments?.getInt(CHARACTER_ID) ?: 0
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.controlEventsFlow.onEach { onControlEvent(it) }
-            .launchIn(viewLifecycleOwner.lifecycleScope)
-    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,25 +32,11 @@ class CharacterDetailsFragment : Fragment() {
     ): View? {
         return ComposeView(requireContext()).apply {
             setContent {
-                val state = viewModel.currencyData.collectAsState().value.results?.getOrNull(characterId-1)
+                val state = viewModel.characterList.collectAsState().value.results?.getOrNull(characterId-1)
                 if (state != null) {
-                    val coroutineScope = rememberCoroutineScope()
-                    CharacterDetailsScreen(state) {
-                        coroutineScope.launch {
-                            viewModel.emitControlEvent(it)
-                        }
-                    }
+                    CharacterDetailsScreen(state)
                 }
             }
-        }
-    }
-
-    private fun onControlEvent(controlEvent: RickMortyEvent) {
-        when (controlEvent) {
-            is RickMortyEvent.NavigateBack -> {
-                findNavController().popBackStack()
-            }
-            else -> Unit
         }
     }
 }

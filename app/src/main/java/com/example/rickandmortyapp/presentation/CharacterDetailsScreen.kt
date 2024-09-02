@@ -29,10 +29,7 @@ import com.example.rickandmortyapp.util.DEFAULT_VALUE
 import com.example.rickandmortyapp.util.formatDate
 
 @Composable
-fun CharacterDetailsScreen(
-    state: CharacterList,
-    onRickMortyEvent: (RickMortyEvent) -> Unit
-) {
+fun CharacterDetailsScreen(state: CharacterList) {
     Box(
         Modifier
             .fillMaxSize()
@@ -42,16 +39,6 @@ fun CharacterDetailsScreen(
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             Spacer(Modifier.height(20.dp))
             Row {
-                Image(
-                    painter = painterResource(id = R.drawable.rickmorty_back_btn),
-                    modifier = Modifier.clickable {
-                        onRickMortyEvent(RickMortyEvent.NavigateBack)
-                    }
-                        .size(60.dp)
-                        .padding(start = 10.dp, top = 2.dp)
-                        .clickable { },
-                    contentDescription = null,
-                )
                 AsyncImage(
                     model = APP_TITLE,
                     contentDescription = null,

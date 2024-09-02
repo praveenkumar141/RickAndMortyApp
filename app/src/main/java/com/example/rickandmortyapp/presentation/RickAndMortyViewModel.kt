@@ -17,9 +17,9 @@ class RickAndMortyViewModel(
     private val rickMortyRepository: RickMortyRepository
 ): ViewModel() {
 
-    private val _currencyData = MutableStateFlow(CharacterListResponse())
-    val currencyData: StateFlow<CharacterListResponse>
-        get() = _currencyData.asStateFlow()
+    private val _characterList = MutableStateFlow(CharacterListResponse())
+    val characterList: StateFlow<CharacterListResponse>
+        get() = _characterList.asStateFlow()
 
     private val _controlEventsFlow = MutableSharedFlow<RickMortyEvent>()
     val controlEventsFlow: SharedFlow<RickMortyEvent> get() = _controlEventsFlow.asSharedFlow()
@@ -33,9 +33,9 @@ class RickAndMortyViewModel(
     fun getList(page: Int = 0) {
         CoroutineScope(Dispatchers.IO).launch {
             val response = rickMortyRepository.getLatestRates(page)
-            val currentList = _currencyData.value.results ?: emptyList()
+            val currentList = _characterList.value.results ?: emptyList()
             val newResults = response.results ?: emptyList()
-            _currencyData.updateValue { copy(info = response.info ,results = currentList + newResults) }
+            _characterList.updateValue { copy(info = response.info ,results = currentList + newResults) }
         }
     }
 }

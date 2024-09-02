@@ -31,7 +31,7 @@ class CharacterListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<ComposeView>(R.id.compose_view).setContent {
-            val state = viewModel.currencyData.collectAsState().value
+            val state = viewModel.characterList.collectAsState().value
             val coroutineScope = rememberCoroutineScope()
             RickMortyParentUI(state) {
                 coroutineScope.launch {
@@ -65,7 +65,7 @@ class CharacterListFragment : Fragment() {
         when (controlEvent) {
             is RickMortyEvent.CharacterClicked -> openDetailFragment(controlEvent.id)
             is RickMortyEvent.LoadNextPage -> viewModel.getList(page = controlEvent.page)
-            RickMortyEvent.NavigateBack -> TODO()
+            else -> Unit
         }
     }
 
